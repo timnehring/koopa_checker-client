@@ -1,44 +1,38 @@
 <template>
-  <v-card class="my-2">
-    <v-card-title class="title" primary-title>{{content.title}}</v-card-title>
-    <v-layout wrap>
-      <v-flex xs8>
-        <v-card-text>
-          {{text}}
-        </v-card-text>
-      </v-flex>
-      <v-spacer></v-spacer>
-      <v-flex xs4>
-        <v-card-text>
-          <v-icon x-large :color="color">{{icon}}</v-icon>
-        </v-card-text>
-      </v-flex>
-    </v-layout>
-  </v-card>
+  <div class="wrapper">
+  <wired-card class="card" elevation="5">
+    <div class="grid-box">
+    <h2 class="title">{{ content.title }}</h2>
+    <div style="display: flex; justify-content: flex-end;"><wired-fab class="fab icon" v-bind:style="{color: activeColor}">{{ this.icon }}</wired-fab></div>
+    <div class="text">{{ text }}</div>
+    </div>
+  </wired-card>
+  </div>
 </template>
 
 <script>
+import 'wired-elements'
 
 export default {
   props: ['content'],
   data () {
     return {
       key: this.content.key,
-      icon: '',
-      text: 'aktuelle Daten werden geladen',
-      color: 'red'
+      icon: 'cached',
+      text: 'Koopa hat noch nicht gefrühstückt!',
+      activeColor: 'transparent'
     }
   },
   methods: {
     fed () {
       this.icon = 'thumb_up'
-      this.color = 'green'
+      this.activeColor = 'green'
       this.text = this.content.text_yes
       this.gotFood = true
     },
     hungry () {
       this.icon = 'thumb_down'
-      this.color = 'red'
+      this.activeColor = 'red'
       this.text = this.content.text_no
     }
   }
@@ -47,4 +41,62 @@ export default {
 
 <style scoped>
 
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.card {
+  align-self: flex-end;
+  display: grid;
+  width: 95%;
+  height: 95%;
+}
+
+.icon-wrap {
+  display: flex;
+  align-self: flex-end;
+  /* margin-top: -20px;
+  margin-right: -50px; */
+  z-index: 1337;
+}
+
+.grid-box {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-areas: 
+  "title icon"
+  "text text";
+  grid-template-rows: 50% 50%;
+}
+
+.title {
+  grid-area: title;
+  justify-self: center;
+  align-self: center;
+}
+
+.icon {
+  grid-area: icon;
+  --wired-fab-bg-color: lightgrey;
+  --wired-icon-size: 80px;
+  margin-top: -15%;
+  margin-right: -10%;
+  z-index: 1337;
+  align-self: end;
+}
+
+.text{
+  grid-area: text;
+  justify-self: center;
+  align-self: center;
+  margin: 5% 5%;
+}
 </style>

@@ -1,6 +1,6 @@
 # koopa_checker-client
 
-> Dog Feeding PWA
+> Newer version of my Dog Feeding PWA with wiredjs UI elements
 
 ## Build Setup
 
