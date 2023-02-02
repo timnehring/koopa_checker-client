@@ -17,7 +17,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.6",
     "axios": "^0.21.2",
     "i": "^0.3.7",
-    "npm": "^6.9.0",
+    "npm": "^9.4.1",
     "roughjs": "^3.1.0",
     "vue": "^2.5.2",
     "vue-native-websocket": "^2.0.7",
